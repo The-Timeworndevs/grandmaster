@@ -22,8 +22,8 @@ new_node('grandmaster:grass_block',{
 })
 
 new_node('grandmaster:snow_block',{
-    description = 'Grass Block\nA clod of dirt with grass growing on it',
-    tiles = {'stone.png'},
+    description = 'Snow Block\nA cube of loose snow, brr',
+    tiles = {'snow.png'},
     groups = {oddly_breakable_by_hand = 1, crumbly = 3}
 })
 
@@ -55,6 +55,92 @@ new_node('grandmaster:sunderite_block',{
     drop = 'grandmaster:cobbled_sunderite_block'
 })
 --Natural Blocks
+
+minetest.register_node("grandmaster:water_source", {
+	description = ("Water Source\nA still bloco of water"),
+	drawtype = "liquid",
+	waving = 3,
+	tiles = {
+		{
+			name = "water_still.png",
+			backface_culling = false,
+			animation = {
+				type = "vertical_frames",
+				aspect_w = 16,
+				aspect_h = 16,
+				length = 2.0,
+			},
+		},
+		{
+			name = "water_still.png",
+			backface_culling = true,
+			animation = {
+				type = "vertical_frames",
+				aspect_w = 16,
+				aspect_h = 16,
+				length = 2.0,
+			},
+		},
+	},
+	use_texture_alpha = "blend",
+	paramtype = "light",
+	walkable = false,
+	pointable = false,
+	diggable = false,
+	buildable_to = true,
+	is_ground_content = false,
+	drop = "",
+	drowning = 1,
+	liquidtype = "source",
+	liquid_alternative_flowing = "grandmaster:water_flowing",
+	liquid_alternative_source = "grandmaster:water_source",
+	liquid_viscosity = 1,
+	post_effect_color = {a = 103, r = 30, g = 60, b = 90}
+})
+
+minetest.register_node("grandmaster:water_flowing", {
+	description = ("Flowing Water\nA block of flowing water"),
+	drawtype = "flowingliquid",
+	waving = 3,
+	tiles = {"water_flowing.png"},
+	special_tiles = {
+		{
+			name = "water_flowing.png",
+			backface_culling = false,
+			animation = {
+				type = "vertical_frames",
+				aspect_w = 16,
+				aspect_h = 16,
+				length = 0.5,
+			},
+		},
+		{
+			name = "water_flowing.png",
+			backface_culling = true,
+			animation = {
+				type = "vertical_frames",
+				aspect_w = 16,
+				aspect_h = 16,
+				length = 0.5,
+			},
+		},
+	},
+	use_texture_alpha = "blend",
+	paramtype = "light",
+	paramtype2 = "flowingliquid",
+	walkable = false,
+	pointable = false,
+	diggable = false,
+	buildable_to = true,
+	is_ground_content = false,
+	drop = "",
+	drowning = 1,
+	liquidtype = "flowing",
+	liquid_alternative_flowing = "grandmaster:water_flowing",
+	liquid_alternative_source = "grandmaster:water_source",
+	liquid_viscosity = 1,
+	post_effect_color = {a = 103, r = 30, g = 60, b = 90}
+})
 
 
 --Building Blocks
