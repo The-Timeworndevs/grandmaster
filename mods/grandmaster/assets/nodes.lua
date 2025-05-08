@@ -1,6 +1,5 @@
 local new_node = core.register_node
 
-
 --Terrain Blocks
 new_node('grandmaster:dirt_block',{
     description = 'Dirt Block\nA clod of dirt dug up from the ground',
