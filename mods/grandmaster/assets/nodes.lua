@@ -1,5 +1,4 @@
 local new_node = core.register_node
---local alias = core.register_alias
 
 
 --Terrain Blocks
