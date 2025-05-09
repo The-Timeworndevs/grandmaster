@@ -70,6 +70,12 @@ new_node('grandmaster:forest_log',{
 	on_place = core.rotate_node
 })
 
+new_node('grandmaster:forest_leaves',{
+    description = 'Forest Leaves\nLeaves from trees native to the forest biomes',
+	tiles = {'forest_leaves.png'},
+	groups = {oddly_breakable_by_hand = 1, snappy = 1}
+})
+
 --Building Blocks
 
 new_node('grandmaster:cobbled_stone_block',{

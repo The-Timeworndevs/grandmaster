@@ -103,29 +103,6 @@ minetest.register_on_leaveplayer(function(player)
 	player_lights[name] = nil
 end)
 
--- Support for luminescent armor
-if minetest.get_modpath("3d_armor") then
-	armor:register_on_update(function(player)
-		local name, inv = armor:get_valid_player(player)
-		if name then
-			local light = 0
-			for i=1, inv:get_size("armor") do
-				local item = inv:get_stack("armor", i):get_name()
-				local def = minetest.registered_items[item]
-				if def and def.light_source and def.light_source > light then
-					light = def.light_source
-				end
-			end
-			if player_lights[name] then
-				player_lights[name].armor_light = light
-			else
-				-- Armor updated before illumination
-				player_lights[name] = {armor_light = light}
-			end
-		end
-	end)
-end
-
 -- Light node for every light level
 for n = 1, 14 do
 	minetest.register_node("grandmaster:light_"..n, {

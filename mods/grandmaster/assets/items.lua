@@ -71,7 +71,7 @@ new_tool('grandmaster:unobtainium_sword', {
         full_punch_interval = 2.9,
         max_drop_level = 20000,
         groupcaps = {
-            crumbly = {
+            snappy = {
                 times = {[1] = 1, [2] = 3.00, [3] = 0.7},
                 uses = 20000,
                 maxlevel = 2
