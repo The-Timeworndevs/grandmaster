@@ -1,4 +1,5 @@
---Thanks to OgelGames and BuckarooBanzai for this temp fix
+--Thanks to OgelGames and BuckarooBanzai for the base code
+--Modified by VoxelDragon6
 
 local player_lights = {}
 
