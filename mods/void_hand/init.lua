@@ -22,6 +22,7 @@ register_item(':', {
             oddly_breakable_by_hand = {
                 times = {[1] = 3.50, [2] = 2.00, [3] = 0.70},
                 uses = 0,
+                maxlevel = 0
             },
         },
         damage_groups = {fleshy = 1},

@@ -11,3 +11,15 @@ new_biome({
     heat_point = 50,
     humidity_point = 50
 })
+
+new_biome({
+    name = "glacier",
+    node_top = "grandmaster:snow_block",
+    depth_top = 1,
+    node_filler = "grandmaster:packed_snow_block",
+    depth_filler = 80,
+    y_max = 1000,
+    y_min = -80,
+    heat_point = 10,
+    humidity_point = 30
+})

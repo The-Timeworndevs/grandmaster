@@ -4,7 +4,7 @@ local new_node = core.register_node
 new_node('grandmaster:dirt_block',{
     description = 'Dirt Block\nA clod of dirt dug up from the ground',
     tiles = {'dirt_block.png'},
-    groups = {oddly_breakable_by_hand = 1, crumbly = 3}
+    groups = {oddly_breakable_by_hand = 1, crumbly = 1}
 })
 
 new_node('grandmaster:grass_block',{
@@ -17,14 +17,39 @@ new_node('grandmaster:grass_block',{
     'grass_block_side.png',
     'grass_block_side.png'
     },
-    groups = {oddly_breakable_by_hand = 1, crumbly = 3},
+    groups = {oddly_breakable_by_hand = 1, crumbly = 1},
     drop = 'grandmaster:dirt_block'
 })
 
 new_node('grandmaster:snow_block',{
     description = 'Snow Block\nA cube of loose snow, brr',
     tiles = {'snow.png'},
-    groups = {oddly_breakable_by_hand = 1, crumbly = 3}
+    groups = {oddly_breakable_by_hand = 1, crumbly = 1}
+})
+
+new_node('grandmaster:packed_snow_block', {
+	description = 'Packed Snow Block\nA cube of packed snow, brr',
+	tiles = {'packed_snow.png'},
+	groups = {oddly_breakable_by_hand = 1, crumbly = 1},
+})
+
+new_node('grandmaster:thin_ice_block', {
+	description = 'Thin Ice\nCareful! This ice is fragile, jumping on it might make it break@',
+	tiles = {'thin_ice.png'},
+	drawtype = 'glasslike',
+	use_texture_alpha = 'blend',
+	groups = {oddly_breakable_by_hand = 1, cracky = 1},
+	drop = {
+		tool_groups = 'cracky',
+		items = {'grandmaster:thin_ice_block'}
+	},
+	is_ground_content = false
+})
+
+new_node('grandmaster:ice_block', {
+	description = 'Ice Block\nFrigid water in solid form',
+	tiles = {'ice.png'},
+	groups = {oddly_breakable_by_hand = 1, cracky = 1}
 })
 
 new_node('grandmaster:stone_block',{
@@ -55,7 +80,6 @@ new_node('grandmaster:sunderite_block',{
     drop = 'grandmaster:cobbled_sunderite_block'
 })
 --Natural Blocks
-
 
 new_node('grandmaster:forest_log',{
     description = 'Forest Log\nLogs from trees native to the forest biomes',
@@ -127,7 +151,6 @@ new_node('grandmaster:sunderite_bricks',{
 })
 
 --Fluids
-
 
 new_node("grandmaster:water_source", {
 	description = ("Water Source\nA still bloco of water"),
