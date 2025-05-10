@@ -1,6 +1,7 @@
 local new_item = core.register_craftitem
 local new_tool = core.register_tool
 
+--Hand
 
 --Materials
 
@@ -64,7 +65,7 @@ new_tool('grandmaster:unobtainium_spade', {
 
 new_tool('grandmaster:unobtainium_sword', {
     type = 'shovel',
-    description = 'Unobtainium Sword\nA sword forged from an impossibly hard material\nMines Snappy (Plant) blocks\nand deals damage to enemies',
+    description = 'Unobtainium Sword\nA sword forged from an impossibly hard material\nMines Snappy (Plant) blocks and deals damage to enemies',
     inventory_image = 'unobtainium_sword.png',
     wield_scale = {x = 1.5, y = 1.5, z = 1.5},
     tool_capabilities = {

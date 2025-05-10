@@ -34,16 +34,20 @@ new_node('grandmaster:packed_snow_block', {
 })
 
 new_node('grandmaster:thin_ice_block', {
-	description = 'Thin Ice\nCareful! This ice is fragile, jumping on it might make it break@',
-	tiles = {'thin_ice.png'},
-	drawtype = 'glasslike',
-	use_texture_alpha = 'blend',
-	groups = {oddly_breakable_by_hand = 1, cracky = 1},
-	drop = {
-		tool_groups = 'cracky',
-		items = {'grandmaster:thin_ice_block'}
+    description = 'Thin Ice\nCareful! This ice is fragile, jumping on it might make it break!',
+    tiles = {'thin_ice.png'},
+    drawtype = 'glasslike',
+    use_texture_alpha = 'blend',
+    groups = {oddly_breakable_by_hand = 1, cracky = 1},
+    drop = {
+        items = {
+          	{
+             	tool_groups ={'pickaxe'},
+             	items = {'grandmaster:thin_ice_block'}
+       	 	} -- have to put another items table inside for what gets dropped
+    	}
 	},
-	is_ground_content = false
+    is_ground_content = false
 })
 
 new_node('grandmaster:ice_block', {
