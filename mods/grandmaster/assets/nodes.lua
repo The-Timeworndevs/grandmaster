@@ -40,20 +40,20 @@ new_node('grandmaster:thin_ice_block', {
     use_texture_alpha = 'blend',
     groups = {oddly_breakable_by_hand = 1, cracky = 1},
     drop = {
-        items = {
-          	{
-             	tool_groups ={'pickaxe'},
-             	items = {'grandmaster:thin_ice_block'}
-       	 	} -- have to put another items table inside for what gets dropped
+    items = {
+    	{
+    		tool_groups ={'pickaxe'},
+    		items = {'grandmaster:thin_ice_block'}
     	}
-	},
+	}
+},
     is_ground_content = false
 })
 
 new_node('grandmaster:ice_block', {
 	description = 'Ice Block\nFrigid water in solid form',
 	tiles = {'ice.png'},
-	groups = {oddly_breakable_by_hand = 1, cracky = 1}
+	groups = {cracky = 1}
 })
 
 new_node('grandmaster:stone_block',{
@@ -105,6 +105,29 @@ new_node('grandmaster:forest_leaves',{
 })
 
 --Building Blocks
+
+new_node('grandmaster:torch', {
+	description = 'Torch\nBurns bright, shedding light in an area and blocking monster spawns',
+	drawtype = 'mesh',
+	mesh = 'torch_floor.obj',
+	inventory_image = 'test_torch.png',
+	tiles = 'test_torch.png',
+	use_texture_alpha = 'clip',
+	sunlight_propagates = true,
+	light_source = 12,
+	selection_block = {
+		type = 'wallmounted',
+		wall_bottom = {-1/8, -1/2, -1/8, 1/8, 2/16, 1/8}
+	},
+	on_place = function(itemstack, placer, pointed_thing)
+		local under = pointed_thing.under
+	end
+})
+
+new_node('grandmaster:floor_torch', {
+	description = 'Torch\nBurns bright, shedding light in an area and blocking monster spawns',
+})
+
 
 new_node('grandmaster:cobbled_stone_block',{
     description = 'Cobbled Stone Block\nStone broken up into smaller pieces',
