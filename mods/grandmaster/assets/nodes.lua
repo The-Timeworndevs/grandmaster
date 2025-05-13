@@ -107,27 +107,42 @@ new_node('grandmaster:forest_leaves',{
 --Building Blocks
 
 new_node('grandmaster:torch', {
-	description = 'Torch\nBurns bright, shedding light in an area and blocking monster spawns',
-	drawtype = 'mesh',
-	mesh = 'torch_floor.obj',
-	inventory_image = 'test_torch.png',
-	tiles = 'test_torch.png',
-	use_texture_alpha = 'clip',
-	sunlight_propagates = true,
-	light_source = 12,
-	selection_block = {
-		type = 'wallmounted',
-		wall_bottom = {-1/8, -1/2, -1/8, 1/8, 2/16, 1/8}
-	},
-	on_place = function(itemstack, placer, pointed_thing)
-		local under = pointed_thing.under
-	end
-})
+    description = 'Torch\nBurns bright, shedding light in an area and blocking monster spawns',
+    drawtype = 'mesh',
+    mesh = 'torch_floor.obj',
+    inventory_image = 'test_torch.png',
+    tiles = 'test_torch.png',
+    use_texture_alpha = 'clip',
+    sunlight_propagates = true,
+    light_source = 12,
+    selection_block = {
+        type = 'wallmounted',
+        wall_bottom = {-1/8, -1/2, -1/8, 1/8, 2/16, 1/8}
+    },
+    on_place = function(itemstack, placer, pointed_thing)
+        local under = pointed_thing.under
+        local node = core.get_node(under)
+        local def = core.registered_nodes[node.name]
 
-new_node('grandmaster:floor_torch', {
-	description = 'Torch\nBurns bright, shedding light in an area and blocking monster spawns',
+        -- Check if the node under the placement has an on_rightclick function
+        if def and def.on_rightclick then
+            -- If it does and the placer is not sneaking, trigger the interaction
+            if not (placer and placer:is_player() and placer:get_player_control().sneak()) then
+                -- Call the underlying node's on_rightclick function
+                local result = def.on_rightclick(under, node, placer, itemstack, pointed_thing)
+                -- If the interaction consumes the itemstack, return the result
+                if result == nil then
+                    return
+                -- Otherwise, return the original itemstack to prevent placement
+                else
+                    return itemstack
+                end
+            end
+        end
+        -- If the underlying node doesn't have an on_rightclick, or the player is sneaking,
+        -- allow the torch placement to proceed normally (by not returning anything).
+    end
 })
-
 
 new_node('grandmaster:cobbled_stone_block',{
     description = 'Cobbled Stone Block\nStone broken up into smaller pieces',
