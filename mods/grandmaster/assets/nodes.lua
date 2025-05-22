@@ -124,23 +124,16 @@ new_node('grandmaster:torch', {
         local node = core.get_node(under)
         local def = core.registered_nodes[node.name]
 
-        -- Check if the node under the placement has an on_rightclick function
         if def and def.on_rightclick then
-            -- If it does and the placer is not sneaking, trigger the interaction
             if not (placer and placer:is_player() and placer:get_player_control().sneak()) then
-                -- Call the underlying node's on_rightclick function
-                local result = def.on_rightclick(under, node, placer, itemstack, pointed_thing)
-                -- If the interaction consumes the itemstack, return the result
+                local result = core.item_place(under, node, placer, itemstack, pointed_thing)
                 if result == nil then
                     return
-                -- Otherwise, return the original itemstack to prevent placement
                 else
-                    return itemstack
+                    return result
                 end
             end
         end
-        -- If the underlying node doesn't have an on_rightclick, or the player is sneaking,
-        -- allow the torch placement to proceed normally (by not returning anything).
     end
 })
 
