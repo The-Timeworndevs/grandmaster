@@ -111,30 +111,60 @@ new_node('grandmaster:torch', {
     drawtype = 'mesh',
     mesh = 'torch_floor.obj',
     inventory_image = 'test_torch.png',
-    tiles = 'test_torch.png',
+	tiles = {'test_torch.png'},
+	groups = {oddly_breakable_by_hand = 1},
     use_texture_alpha = 'clip',
     sunlight_propagates = true,
     light_source = 12,
+	paramtype = 'light',
+	paramtype2 = 'wallmounted',
+	walkable = false,
     selection_block = {
         type = 'wallmounted',
-        wall_bottom = {-1/8, -1/2, -1/8, 1/8, 2/16, 1/8}
+		wall_bottom = {-1/8, -1/2, -1/8, 1/8, 2/16, 1/8},
     },
-    on_place = function(itemstack, placer, pointed_thing)
-        local under = pointed_thing.under
-        local node = core.get_node(under)
-        local def = core.registered_nodes[node.name]
+	drop = 'grandmaster:torch',
+	on_place = function(itemstack, placer, pointed_thing)
+		local under = pointed_thing.under
+		local node = core.get_node(under)
+		local def = core.registered_nodes[node.name]
+		if def and def.on_rightclick and not (placer and placer:is_player() and placer:get_player_control().sneak) then
+			return def.on_rightclick(under, node, placer, itemstack, pointed_thing) or itemstack
+		end
 
-        if def and def.on_rightclick then
-            if not (placer and placer:is_player() and placer:get_player_control().sneak()) then
-                local result = core.item_place(under, node, placer, itemstack, pointed_thing)
-                if result == nil then
-                    return
-                else
-                    return result
-                end
-            end
-        end
-    end
+		local wdir = core.dir_to_wallmounted
+		local fakestack = itemstack
+		if wdir == 1 then
+			fakestack:set_name('grandmaster:torch')
+		else
+			fakestack:set_name('grandmaster:wall_torch')
+		end
+
+		itemstack = core.item_place(fakestack, placer, pointed_thing, wdir)
+		itemstack:set_name('grandmaster:torch')
+		return itemstack
+	end,
+	on_rotate = false
+})
+
+new_node('grandmaster:wall_torch', {
+    description = 'Torch\nBurns bright, shedding light in an area and blocking monster spawns',
+	drawtype = 'mesh',
+	mesh = 'torch_wall.obj',
+	tiles = {'test_torch.png'},
+	groups = {oddly_breakable_by_hand = 1},
+	use_texture_alpha = 'clip',
+	sunlight_propagates = true,
+    light_source = 12,
+	paramtype = 'light',
+	paramtype2 = 'wallmounted',
+	walkable = false,
+	selection_block = {
+		type = 'wallmounted',
+		wall_side = {-1/2, -1/2, -1/8, -1/8, 1/8, 1/8},
+	},
+	drop = 'grandmaster:torch',
+	on_rotate = false
 })
 
 new_node('grandmaster:cobbled_stone_block',{
