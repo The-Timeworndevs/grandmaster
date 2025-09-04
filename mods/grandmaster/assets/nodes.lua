@@ -218,7 +218,7 @@ new_node('grandmaster:sunderite_bricks',{
 --Fluids
 
 new_node("grandmaster:water_source", {
-	description = ("Water Source\nA still bloco of water"),
+	description = ("Water Source\nA still block of water"),
 	drawtype = "liquid",
 	waving = 3,
 	tiles = {
