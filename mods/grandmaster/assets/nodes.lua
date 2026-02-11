@@ -108,10 +108,12 @@ new_node('grandmaster:forest_leaves',{
 
 new_node('grandmaster:torch',{
 	description = 'Torch\nSheds light in an area, keeping monsters at bay',
-
+	light_source = 12,
+	walkable = false,
 	paramtype2 = 'wallmounted',
-	tiles = {'ice.png'},
-	drawtype = 'torchlike',
+	tiles = {'test_torch.png'},
+	drawtype = 'mesh',
+	mesh = 'torch_floor.obj',
 	groups = {oddly_breakable_by_hand = 1}
 })
 
